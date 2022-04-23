@@ -3885,7 +3885,7 @@
         };
 
         markedRenderer.paragraph = function(text) {
-            var isTeXInline     = /\$\$(.*)\$\$/g.test(text);
+            var isTeXInline     = /\$(.*)\$/g.test(text);
             var isTeXLine       = /^\$\$(.*)\$\$$/.test(text);
             var isTeXAddClass   = (isTeXLine)     ? " class=\"" + editormd.classNames.tex + "\"" : " class=\"line\"";
             var isToC           = (settings.tocm) ? /^(\[TOC\]|\[TOCM\])$/.test(text) : /^\[TOC\]$/.test(text);
@@ -3893,7 +3893,7 @@
 
             if (!isTeXLine && isTeXInline)
             {
-                text = text.replace(/(\$\$([^\$]*)\$\$)+/g, function($1, $2) {
+                text = text.replace(/(\$([^\$]*)\$)+/g, function($1, $2) {
                     return "<span class=\"" + editormd.classNames.tex + "\">" + $2.replace(/\$/g, "") + "</span>";
                 });
             }
