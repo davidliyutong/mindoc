@@ -1,0 +1,24 @@
+version: '3'
+services:
+  app:
+    container_name: mindoc-app
+    image: mindoc-ng
+    privileged: false
+    restart: always
+    volumes:
+      # - ./mindoc-db:/mindoc/database/
+      - ./mindoc-uploads:/mindoc/uploads/
+      # - ./mindoc-conf:/mindoc/conf/
+    networks:
+      - default
+    environment:
+      - MINDOC_DB_DATABASE=/mindoc/database/mindoc.db 
+      - MINDOC_ENABLE_EXPORT=true
+      - MINDOC_BASEURL={yourbaseurl}
+      - MINDOC_CACHE_PROVIDER=file
+      - MINDOC_CACHE=true
+      # - MINDOC_BASE_URL=
+      # - MINDOC_CDN_IMG_URL=
+      # - MINDOC_CDN_CSS_URL=
+      # - MINDOC_CDN_JS_URL=
+
